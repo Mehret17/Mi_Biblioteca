@@ -3,7 +3,7 @@
 const getBooks = () => {
     return new Promise((resolve, reject) => {
         axios
-            .get(`https://www.goodreads.com/search.xml?key=AjJN7b1F1SFJRROEpMk2Gw&output=json`)
+            .get(`https://www.goodreads.com/search.xml?key`)
             .then(res => {
                 resolve(res.data)
             })
