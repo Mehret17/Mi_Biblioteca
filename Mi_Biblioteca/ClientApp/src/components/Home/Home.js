@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import getBooks from '../../APICalls/BooksRequest';
-import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
+//import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
+import BookResults from '../BooksResult/BookResults';
 
 class Home extends React.Component {
     state = {
@@ -27,10 +28,10 @@ class Home extends React.Component {
         if (this.state.books) {
             this.booksComponent = this.state.books.map(book => {
                 return (
-                    <div key={book.id}>
-                        <h4>{book.volumeInfo.title}
-                        </h4>
-                    </div>
+                    <BookResults
+                        key={book.id}
+                        booksDetails={book}
+                    />
                 )
             })
         }
