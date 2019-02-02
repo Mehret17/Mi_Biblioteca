@@ -1,9 +1,10 @@
 ﻿import axios from 'axios';
+import constants from '../Constants';
 
-const getBooks = () => {
+const getBooks = (txt) => {
     return new Promise((resolve, reject) => {
         axios
-            .get(`https://www.goodreads.com/search.xml?key`)
+            .get(`https://www.googleapis.com/books/v1/volumes?q=${txt}`)
             .then(res => {
                 resolve(res.data)
             })
