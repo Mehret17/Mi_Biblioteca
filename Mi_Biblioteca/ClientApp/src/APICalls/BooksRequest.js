@@ -14,10 +14,10 @@ const getBooks = (txt) => {
     })
 }
 
-const addBook = (book) => {
+const addBook = (myLibrary) => {
     return new Promise((resolve, reject) => {
         axios
-            .post(`api/myLibrary`, book)
+            .post(`api/MyLibrary`, myLibrary)
             .then((res) => {
                 resolve(res.data);
             })
