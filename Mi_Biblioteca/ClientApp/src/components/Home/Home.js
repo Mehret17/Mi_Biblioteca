@@ -1,7 +1,8 @@
 ﻿import React from 'react';
 import getBooks from '../../APICalls/BooksRequest';
 //import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
-import BookResults from '../BooksResult/BookResults';
+import SearchResults from '../SearchResults/SearchResults';
+import "./Home.css";
 
 class Home extends React.Component {
     state = {
@@ -28,7 +29,7 @@ class Home extends React.Component {
         if (this.state.books) {
             this.booksComponent = this.state.books.map(book => {
                 return (
-                    <BookResults
+                    <SearchResults
                         key={book.id}
                         booksDetails={book}
                     />
@@ -36,8 +37,8 @@ class Home extends React.Component {
             })
         }
         return (
-            <div className="Global">
-                <h2>Book Explorer!</h2>
+            <div className="Home">
+                <h2>Explore</h2>
                 <input
                     type="text"
                     placeholder="Search for a book"
