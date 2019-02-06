@@ -45,12 +45,22 @@ searchInput = (e) => {
 
 saveBook = books => {
     const myBooks = { ...this.state.myLibrary };
-    myBooks.title = books.volumeInfo.title
-    myBooks.authors = books.volumeInfo.authors;
+    myBooks.title = books.volumeInfo.title;
+    {
+        books.volumeInfo.authors.length > 1 ?
+            myBooks.authors = books.volumeInfo.authors.join(" & ") :
+            myBooks.authors = books.volumeInfo.authors[0]
+    }
+   // myBooks.authors = books.volumeInfo.authors
     myBooks.description = books.volumeInfo.description;
-    myBooks.categories = books.volumeInfo.categories;
-   myBooks.MyLibraryId = 1;
-    //myBooks.WishListId = Books.WishListId;
+    {
+        books.volumeInfo.categories.length > 1 ?
+            myBooks.categories = books.volumeInfo.categories.join(" & ") :
+            myBooks.categories = books.volumeInfo.categories[0];
+    }
+  //  myBooks.categories = books.volumeInfo.categories;
+    myBooks.MyLibraryId = 1;
+    myBooks.WishListId = 1;
     myBooks.ImageLink = books.volumeInfo.imageLinks.thumbnail;
     booksRequest
         .addBook(myBooks)

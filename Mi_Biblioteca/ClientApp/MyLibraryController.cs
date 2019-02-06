@@ -22,7 +22,7 @@ namespace Mi_Biblioteca.Controllers
         }
 
         [HttpPost]
-        public void AddBook([FromBody] BooksItem bookItem)
+        public void AddBook(BooksItem bookItem)
         {
             Libray.addBookToLibrary(bookItem);
         }

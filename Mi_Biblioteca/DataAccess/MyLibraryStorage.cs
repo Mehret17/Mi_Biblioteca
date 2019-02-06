@@ -36,8 +36,8 @@ namespace Mi_Biblioteca.DataAccess
             {
                 connection.Open();
 
-                connection.Execute(@"INSERT INTO BooksItem(ID, title, authors, description, categories, MyLibraryId, WishListId, ImageLink)
-                                     values (@ID, @title, @authors, @description, @categories, @MyLibraryId, @WishListId, @ImageLink)", bookitem);
+                connection.Execute(@"INSERT INTO BooksItem(title, authors, description, categories, MyLibraryId, WishListId, ImageLink)
+                                     values (@title, @authors, @description, @categories, @MyLibraryId, @WishListId, @ImageLink)", bookitem);
                                       
             }
         }
