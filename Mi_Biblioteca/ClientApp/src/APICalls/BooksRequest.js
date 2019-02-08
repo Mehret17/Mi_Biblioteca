@@ -14,4 +14,18 @@ const getBooks = (txt) => {
     })
 }
 
-export default getBooks;
+const addBook = (myLibrary) => {
+    return new Promise((resolve, reject) => {
+        axios
+            .post(`api/MyLibrary`, myLibrary)
+            .then((res) => {
+                resolve(res.data);
+            })
+            .catch((err) => {
+                reject(console.error('Error in addingBook request', err))
+            })
+    });
+};
+
+
+export default { getBooks, addBook };
