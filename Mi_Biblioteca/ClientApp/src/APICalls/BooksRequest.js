@@ -30,7 +30,7 @@ const addBook = (myLibrary) => {
 const addWishList = (wishList) => {
     return new Promise((resolve, reject) => {
         axios
-            .post(`api/booksItem`, wishList)
+            .post(`api/booksItem/wishBookItem`, wishList)
             .then((res) => {
                 resolve(res.data);
             })

@@ -36,8 +36,8 @@ namespace Mi_Biblioteca.DataAccess
             {
                 connection.Open();
 
-                connection.Execute(@"INSERT INTO BooksItem(title, authors, description, categories, myLibraryId, wishListId, ImageLink, userId, wantToRead)
-                                     values (@title, @authors, @description, @categories, @myLibraryId, @wishListId, @ImageLink, @userId, @wantToRead)", bookitem);
+                connection.Execute(@"INSERT INTO BooksItem(title, authors, description, categories, ImageLink, userId)
+                                     values (@title, @authors, @description, @categories, @ImageLink, @userId)", bookitem);
                                       
             }
         }
@@ -48,8 +48,8 @@ namespace Mi_Biblioteca.DataAccess
             {
                 connection.Open();
 
-                connection.Execute(@"INSERT INTO BooksItem(title, authors, description, categories, myLibraryId, wishListId, ImageLink, userId, wantToRead)
-                                     values (@title, @authors, @description, @categories, @myLibraryId, @wishListId, @ImageLink, @userId, @wantToRead)", wishbookitem);
+                connection.Execute(@"INSERT INTO BooksItem(title, authors, description, categories, ImageLink, wantToRead)
+                                     values (@title, @authors, @description, @categories, @ImageLink,  @wantToRead)", wishbookitem);
 
             }
         }

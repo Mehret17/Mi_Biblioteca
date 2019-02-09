@@ -27,9 +27,11 @@ namespace Mi_Biblioteca.Controllers
             Libray.addBookToLibrary(bookItem);
         }
 
-        [HttpPost]
+        [HttpPost("wishBookItem")]
         public void AddToWishList(WishBooksItem wishbookItem)
+
         {
+           
             Libray.addBookToWishList(wishbookItem);
         }
     }
