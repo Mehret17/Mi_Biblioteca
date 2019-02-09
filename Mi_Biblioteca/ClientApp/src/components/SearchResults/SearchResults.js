@@ -15,18 +15,20 @@ class SearchResults extends React.Component {
         const saveToLibrary = e => {
             this.props.saveBook(this.props.booksDetails)
         }
+        const saveToWishList = e => {
+            this.props.saveWishListBook(this.props.booksDetails)
+        }
 
         return (
             <div className="text-center">
                 <Col xs={6} md={4}>
-                    <img src={booksDetails.volumeInfo.imageLinks.thumbnail}/>
+                    <img src={booksDetails.volumeInfo.imageLinks !== undefined? booksDetails.volumeInfo.imageLinks.thumbnail : '' }/>
                     <h4><strong>Title:</strong> {booksDetails.volumeInfo.title}</h4>
                     <h5><strong>Author:</strong> {booksDetails.volumeInfo.authors}</h5>
                     <h5><strong>Category:</strong> {booksDetails.volumeInfo.categories}</h5>
                     <h5>{booksDetails.volumeInfo.description}</h5>
                     <button className="btn btn-default btn-sm glyphicon glyphicon-bookmark pull-left" onClick={saveToLibrary} ></button>
-                  
-                    
+                    <button className="btn btn-default btn-sm glyphicon glyphicon-plus pull-right" onClick={saveToWishList} ></button>
                 </Col>
             </div>
             )
