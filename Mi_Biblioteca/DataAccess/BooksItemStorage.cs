@@ -9,13 +9,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace Mi_Biblioteca.DataAccess
 {
-    public class MyLibraryStorage
+    public class BooksItemStorage
     {
         // private IConfiguration config;
 
         private readonly string ConnectionString;
 
-        public MyLibraryStorage(IConfiguration config)
+        public BooksItemStorage(IConfiguration config)
         {
             ConnectionString = config.GetSection("ConnectionString").Value;
         }
@@ -30,15 +30,27 @@ namespace Mi_Biblioteca.DataAccess
         //    }
         //}
 
-         public void addBookToLibrary(BooksItem bookitem)
+         public void addBookToLibrary(MyLibBooksItem bookitem)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
 
-                connection.Execute(@"INSERT INTO BooksItem(title, authors, description, categories, MyLibraryId, WishListId, ImageLink)
-                                     values (@title, @authors, @description, @categories, @MyLibraryId, @WishListId, @ImageLink)", bookitem);
+                connection.Execute(@"INSERT INTO BooksItem(title, authors, description, categories, ImageLink, userId)
+                                     values (@title, @authors, @description, @categories, @ImageLink, @userId)", bookitem);
                                       
+            }
+        }
+
+        public void addBookToWishList(WishBooksItem wishbookitem)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                connection.Execute(@"INSERT INTO BooksItem(title, authors, description, categories, ImageLink, wantToRead)
+                                     values (@title, @authors, @description, @categories, @ImageLink,  @wantToRead)", wishbookitem);
+
             }
         }
     }

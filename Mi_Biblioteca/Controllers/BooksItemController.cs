@@ -11,20 +11,28 @@ namespace Mi_Biblioteca.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MyLibraryController : Controller
+    public class BooksItemController : Controller
     
     {
-        private readonly MyLibraryStorage Libray;
+        private readonly BooksItemStorage Libray;
 
-        public MyLibraryController(IConfiguration config)
+        public BooksItemController(IConfiguration config)
         {
-            Libray = new MyLibraryStorage(config);
+            Libray = new BooksItemStorage(config);
         }
 
         [HttpPost]
-        public void AddBook(BooksItem bookItem)
+        public void AddBook(MyLibBooksItem bookItem)
         {
             Libray.addBookToLibrary(bookItem);
+        }
+
+        [HttpPost("wishBookItem")]
+        public void AddToWishList(WishBooksItem wishbookItem)
+
+        {
+           
+            Libray.addBookToWishList(wishbookItem);
         }
     }
 }

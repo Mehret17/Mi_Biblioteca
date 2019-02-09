@@ -17,7 +17,7 @@ const getBooks = (txt) => {
 const addBook = (myLibrary) => {
     return new Promise((resolve, reject) => {
         axios
-            .post(`api/MyLibrary`, myLibrary)
+            .post(`api/booksItem`, myLibrary)
             .then((res) => {
                 resolve(res.data);
             })
@@ -27,5 +27,17 @@ const addBook = (myLibrary) => {
     });
 };
 
+const addWishList = (wishList) => {
+    return new Promise((resolve, reject) => {
+        axios
+            .post(`api/booksItem/wishBookItem`, wishList)
+            .then((res) => {
+                resolve(res.data);
+            })
+            .catch((err) => {
+                reject(console.error('Error in adding wishList request', err))
+            })
+    });
+};
 
-export default { getBooks, addBook };
+export default { getBooks, addBook, addWishList };
