@@ -97,7 +97,7 @@ class Home extends React.Component {
         booksRequest
             .addWishList(wishList)
             .then(() => {
-                this.props.history.push("/mywishList");
+                this.props.history.push("/wishList");
             })
             .catch(err => {
                 console.error("error in posting my want to read books", err)

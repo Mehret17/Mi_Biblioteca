@@ -34,5 +34,11 @@ namespace Mi_Biblioteca.Controllers
            
             Libray.addBookToWishList(wishbookItem);
         }
+
+        [HttpGet]
+        public IActionResult GetMyLibrary()
+        {
+           return Ok (Libray.GetMyLibraryBooks());
+        }
     }
 }

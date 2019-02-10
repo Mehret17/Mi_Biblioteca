@@ -40,4 +40,17 @@ const addWishList = (wishList) => {
     });
 };
 
-export default { getBooks, addBook, addWishList };
+const getMyLibrary = () => {
+    return new Promise((reslove, reject) => {
+        axios
+            .get(`api/booksItem`)
+            .then((res) => {
+                reslove(res.data);
+            })
+            .catch((err) => {
+                reject(console.error('error in getting myLibrary', err))
+            })
+    })
+}
+ 
+export default { getBooks, addBook, addWishList, getMyLibrary};
