@@ -8,7 +8,7 @@ namespace Mi_Biblioteca.Models
  
         public class MyLibBooksItem
         {
-            // public int Id { get; set; }
+            public int Pk_Id { get; set; }
             public string Title { get; set; }
             public string Authors { get; set; }
             public string Description { get; set; }

@@ -65,5 +65,21 @@ const getWishList = () => {
             })
     })
 }
+
+const deleteBook = (pk_id) => {
+    console.log('stuff');
+    return new Promise((resolve, reject) => {
+        axios
+            .delete(`api/booksitem/${pk_id}`)
+            .then(res => {
+                resolve(res.data);
+            })
+            .catch(err => {
+                reject(err);
+            });
+    });
+}
  
-export default { getBooks, addBook, addWishList, getMyLibrary, getWishList};
+export default {
+    getBooks, addBook, addWishList, getMyLibrary, getWishList, deleteBook
+};

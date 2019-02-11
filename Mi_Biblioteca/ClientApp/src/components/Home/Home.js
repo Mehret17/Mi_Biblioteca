@@ -133,7 +133,7 @@ class Home extends React.Component {
                     onChange={this.searchInput}
                     onKeyPress={this.searchBooks}
                 />
-                {this.booksComponent}
+                    {this.booksComponent}
             </div>
 
         )

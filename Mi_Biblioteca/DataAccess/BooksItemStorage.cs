@@ -50,8 +50,9 @@ namespace Mi_Biblioteca.DataAccess
             {
                 connection.Open();
 
-                var result = connection.Query<MyLibBooksItem>(@"select title, authors, categories, description, ImageLink from BooksItem
-                                                                where userId = 1");
+                //var result = connection.Query<MyLibBooksItem>(@"select title, authors, categories, description, ImageLink from BooksItem
+                //                                                where userId = 1");
+                var result = connection.Query<MyLibBooksItem>(@"select * from BooksItem");
                 return result.ToList();
 
 
@@ -68,6 +69,31 @@ namespace Mi_Biblioteca.DataAccess
                                                                 where wantToread = 1");
                 return result.ToList();
 
+            }
+        }
+
+        public MyLibBooksItem GetSingleBook(int id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                var result = connection.QueryFirst<MyLibBooksItem>(@"select * from BooksItem where BooksItem.Pk_Id = @id", new { id });
+
+                return result;
+            }
+        }
+        
+        public bool DeleteMyLibrary(int Pk_Id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                int result = connection.Execute(@"delete from BooksItem where Pk_Id = @id", new { id = Pk_Id });
+                if (result > 0)
+                {
+                    return true;
+                }
+                return false;
             }
         }
     }
