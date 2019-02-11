@@ -40,4 +40,46 @@ const addWishList = (wishList) => {
     });
 };
 
-export default { getBooks, addBook, addWishList };
+const getMyLibrary = () => {
+    return new Promise((reslove, reject) => {
+        axios
+            .get(`api/booksItem`)
+            .then((res) => {
+                reslove(res.data);
+            })
+            .catch((err) => {
+                reject(console.error('error in getting myLibrary', err))
+            })
+    })
+}
+
+const getWishList = () => {
+    return new Promise((reslove, reject) => {
+        axios
+            .get(`api/booksItem/wishList`)
+            .then((res) => {
+                reslove(res.data);
+            })
+            .catch((err) => {
+                reject(console.error('error in getting myLibrary', err))
+            })
+    })
+}
+
+const deleteBook = (pk_id) => {
+    console.log('stuff');
+    return new Promise((resolve, reject) => {
+        axios
+            .delete(`api/booksitem/${pk_id}`)
+            .then(res => {
+                resolve(res.data);
+            })
+            .catch(err => {
+                reject(err);
+            });
+    });
+}
+ 
+export default {
+    getBooks, addBook, addWishList, getMyLibrary, getWishList, deleteBook
+};

@@ -20,17 +20,7 @@ namespace Mi_Biblioteca.DataAccess
             ConnectionString = config.GetSection("ConnectionString").Value;
         }
 
-        //public void addBookToLibrary(OrderLines orderLine)
-        //{
-        //    using (var connection = new SqlConnection(ConnectionString))
-        //    {
-        //        connection.Open();
-
-        //        connection.Execute(@"insert into OrderLines(OrderId, ProductId) values (@OrderId,@ProductId)", orderLine);
-        //    }
-        //}
-
-         public void addBookToLibrary(MyLibBooksItem bookitem)
+        public void addBookToLibrary(MyLibBooksItem bookitem)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -38,7 +28,7 @@ namespace Mi_Biblioteca.DataAccess
 
                 connection.Execute(@"INSERT INTO BooksItem(title, authors, description, categories, ImageLink, userId)
                                      values (@title, @authors, @description, @categories, @ImageLink, @userId)", bookitem);
-                                      
+
             }
         }
 
@@ -53,5 +43,59 @@ namespace Mi_Biblioteca.DataAccess
 
             }
         }
+
+        public List<MyLibBooksItem> GetMyLibraryBooks()
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                //var result = connection.Query<MyLibBooksItem>(@"select title, authors, categories, description, ImageLink from BooksItem
+                //                                                where userId = 1");
+                var result = connection.Query<MyLibBooksItem>(@"select * from BooksItem");
+                return result.ToList();
+
+
+            }
+        }
+
+        public List<WishBooksItem> GetMyWishList()
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                var result = connection.Query<WishBooksItem>(@"select title, authors, categories, description, ImageLink from BooksItem
+                                                                where wantToread = 1");
+                return result.ToList();
+
+            }
+        }
+
+        public MyLibBooksItem GetSingleBook(int id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                var result = connection.QueryFirst<MyLibBooksItem>(@"select * from BooksItem where BooksItem.Pk_Id = @id", new { id });
+
+                return result;
+            }
+        }
+        
+        public bool DeleteMyLibrary(int Pk_Id)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                int result = connection.Execute(@"delete from BooksItem where Pk_Id = @id", new { id = Pk_Id });
+                if (result > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
     }
+
 }

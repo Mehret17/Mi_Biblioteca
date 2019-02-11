@@ -22,6 +22,7 @@ class Home extends React.Component {
         myLibrary: [],
         wishListLibrary: [],
         searchResult: '',
+        isCliked: false,
     }
 
     /* searching Books */
@@ -63,6 +64,7 @@ class Home extends React.Component {
         myBooks.userId = 1;
         //myBooks.WishListId = 1;
         myBooks.ImageLink = books.volumeInfo.imageLinks.thumbnail;
+            
         booksRequest
             .addBook(myBooks)
             .then(() => {
@@ -97,7 +99,7 @@ class Home extends React.Component {
         booksRequest
             .addWishList(wishList)
             .then(() => {
-                this.props.history.push("/mywishList");
+                this.props.history.push("/wishList");
             })
             .catch(err => {
                 console.error("error in posting my want to read books", err)
@@ -131,7 +133,7 @@ class Home extends React.Component {
                     onChange={this.searchInput}
                     onKeyPress={this.searchBooks}
                 />
-                {this.booksComponent}
+                    {this.booksComponent}
             </div>
 
         )

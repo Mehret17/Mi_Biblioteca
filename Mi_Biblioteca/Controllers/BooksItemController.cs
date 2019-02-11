@@ -34,5 +34,41 @@ namespace Mi_Biblioteca.Controllers
            
             Libray.addBookToWishList(wishbookItem);
         }
+
+        [HttpGet]
+        public IActionResult GetMyLibrary()
+        {
+           return Ok (Libray.GetMyLibraryBooks());
+        }
+
+        [HttpGet("wishList")]
+        public IActionResult GetWishList()
+        {
+            return Ok(Libray.GetMyWishList());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetSingleBookFromLibrary(int id)
+        {
+            return Ok(Libray.GetSingleBook(id));
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteLibrary(int id)
+        {
+            var myBooks = Libray.GetSingleBook(id);
+
+            if (myBooks == null)
+            {
+                return NotFound();
+            }
+            var success = Libray.DeleteMyLibrary(id);
+
+            if (success)
+            {
+                return Ok();
+            }
+            return BadRequest(new { Message = "Delete was a Complete Failure" });
+        }
     }
 }
