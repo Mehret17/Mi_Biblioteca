@@ -40,5 +40,11 @@ namespace Mi_Biblioteca.Controllers
         {
            return Ok (Libray.GetMyLibraryBooks());
         }
+
+        [HttpGet("wishList")]
+        public IActionResult GetWishList()
+        {
+            return Ok(Libray.GetMyWishList());
+        }
     }
 }

@@ -22,6 +22,7 @@ class Home extends React.Component {
         myLibrary: [],
         wishListLibrary: [],
         searchResult: '',
+        isCliked: false,
     }
 
     /* searching Books */
@@ -63,6 +64,7 @@ class Home extends React.Component {
         myBooks.userId = 1;
         //myBooks.WishListId = 1;
         myBooks.ImageLink = books.volumeInfo.imageLinks.thumbnail;
+            
         booksRequest
             .addBook(myBooks)
             .then(() => {

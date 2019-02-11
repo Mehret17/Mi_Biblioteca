@@ -2,16 +2,16 @@
 import { Container, Col } from 'react-bootstrap';
 
 class SearchResults extends React.Component {
-    state = {
-        Title: 'Title',
-        Author: 'Author',
-        Category: 'Category',
-        Description: 'Description'
-    }
+    //state = {
+    //    Title: 'Title',
+    //    Author: 'Author',
+    //    Category: 'Category',
+    //    Description: 'Description'
+    //}
 
     render() {
         const { booksDetails } = this.props
-        const { Title, Author, Category, Description } = this.state;
+      //  const { Title, Author, Category, Description } = this.state;
         const saveToLibrary = e => {
             this.props.saveBook(this.props.booksDetails)
         }

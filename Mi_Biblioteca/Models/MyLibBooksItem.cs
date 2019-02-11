@@ -14,6 +14,7 @@ namespace Mi_Biblioteca.Models
             public string Description { get; set; }
             public string Categories { get; set; }
             public int userId { get; set; }
+            public int read { get; set; }
             // public int WishListId { get; set; }
             public string ImageLink { get; set; }
         }

@@ -57,6 +57,19 @@ namespace Mi_Biblioteca.DataAccess
 
             }
         }
+
+        public List<WishBooksItem> GetMyWishList()
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                var result = connection.Query<WishBooksItem>(@"select title, authors, categories, description, ImageLink from BooksItem
+                                                                where wantToread = 1");
+                return result.ToList();
+
+            }
+        }
     }
 
 }
